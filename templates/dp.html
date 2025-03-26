@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generated & Retrieved Layouts</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #121212;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      p {
+        margin-top: 4px;
+        color: white;
+        font-weight: bold;
+      }
+
+      .outer-box {
+        width: 80%;
+        max-width: 900px;
+        background: #1e1e1e;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        border: 2px solid #333;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ffffff;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffffff;
+        border-bottom: 2px solid #444;
+        padding-bottom: 5px;
+      }
+
+      .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .image-container {
+        margin: 10px;
+        border: 1px solid #444;
+        padding: 10px;
+        background-color: #2a2a2a;
+        border-radius: 5px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        position: relative; /* Needed for positioning */
+      }
+
+      .image-text {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 8px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 5px;
+      }
+
+      .fa-pen-to-square {
+        color: #bbb;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      /* Dropdown Styling */
+      .dropdown {
+        display: none;
+        position: absolute;
+        top: 40px;
+        right: 10px;
+        background: #333;
+        border-radius: 5px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        padding: 10px;
+        z-index: 10;
+      }
+
+      .dropdown label {
+        display: block;
+        font-size: 14px;
+        margin-top: 8px;
+        color: #fff;
+      }
+
+      select {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #555;
+        background-color: #444;
+        color: white;
+        font-size: 14px;
+      }
+
+      select:focus {
+        outline: none;
+        border-color: #777;
+      }
+
+      .finalize-btn {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        padding: 8px;
+        background-color: #4caf50;
+        color: white;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .finalize-btn:hover {
+        /* background-color: #45a049; */
+        background-color: #74C0FC;
+      }
+      .text-icon-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 5px;
+      }
+
+      .text-icon-wrapper p {
+        margin: 0;
+      }
+
+      .fa-pen-to-square {
+        color: #bbb;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer-box">
+      <h1>Floorplan Layout Images</h1>
+
+      <div class="section-title">Generated Images</div>
+      <div class="image-gallery">
+        <div class="image-container">
+          <img src="../static/images/fp_final_6.png" alt="Generated Layout" />
+          <p class="image-text">HouseGAN++</p>
+        </div>
+        <div class="image-container">
+          <div class="image-wrapper">
+            <img
+              src="../static/images/rectified_image_filtered.png"
+              alt="Rectified Layout"
+            />
+          </div>
+
+          <div class="text-icon-wrapper">
+            <p>Simulated Annealing</p>
+            <i
+              class="fa-regular fa-pen-to-square fa-beat" style="color: #74C0FC;" 
+              onclick="toggleDropdown(event)"
+            ></i>
+          </div>
+
+          <div class="dropdown" onclick="event.stopPropagation()">
+            <label>Living Room:</label>
+            <select>
+              <option value="NE">North East</option>
+              <option value="SE">South East</option>
+              <option value="SW">South West</option>
+              <option value="NW">North West</option>
+              <option value="N">North</option>
+              <option value="S">South</option>
+              <option value="W">West</option>
+              <option value="E">East</option>
+            </select>
+
+            <label>Bathroom:</label>
+            <select>
+              <option value="NE">North East</option>
+              <option value="SE">South East</option>
+              <option value="SW">South West</option>
+              <option value="NW">North West</option>
+              <option value="N">North</option>
+              <option value="S">South</option>
+              <option value="W">West</option>
+              <option value="E">East</option>
+            </select>
+
+            <label>Master Room:</label>
+            <select>
+              <option value="NE">North East</option>
+              <option value="SE">South East</option>
+              <option value="SW">South West</option>
+              <option value="NW">North West</option>
+              <option value="N">North</option>
+              <option value="S">South</option>
+              <option value="W">West</option>
+              <option value="E">East</option>
+            </select>
+
+            <label>Kitchen:</label>
+            <select>
+              <option value="NE">North East</option>
+              <option value="SE">South East</option>
+              <option value="SW">South West</option>
+              <option value="NW">North West</option>
+              <option value="N">North</option>
+              <option value="S">South</option>
+              <option value="W">West</option>
+              <option value="E">East</option>
+            </select>
+
+            <label>Common Room:</label>
+            <select>
+              <option value="NE">North East</option>
+              <option value="SE">South East</option>
+              <option value="SW">South West</option>
+              <option value="NW">North West</option>
+              <option value="N">North</option>
+              <option value="S">South</option>
+              <option value="W">West</option>
+              <option value="E">East</option>
+            </select>
+
+            <label>Balcony:</label>
+            <select>
+              <option value="NE">North East</option>
+              <option value="SE">South East</option>
+              <option value="SW">South West</option>
+              <option value="NW">North West</option>
+              <option value="N">North</option>
+              <option value="S">South</option>
+              <option value="W">West</option>
+              <option value="E">East</option>
+            </select>
+
+            <button class="finalize-btn" onclick="finalizeDirection(event)">
+              Finalize Direction
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">Retrieved Images</div>
+      <div class="image-gallery">
+        {% for image_info in images_info %}
+        <div class="image-container">
+          <img
+            src="{{ url_for('static', filename='images/' + image_info.filename) }}"
+            alt="Retrieved Layout"
+          />
+          <div class="image-text">
+            <p>{{ image_info.filename }}</p>
+            <p>Rank: {{ image_info.rank }}</p>
+            <p>Distance: {{ image_info.distance }}</p>
+            <p>Similarity: {{ image_info.similarity }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <script>
+      function toggleDropdown(event) {
+        event.stopPropagation();
+        let dropdown = event.target
+          .closest(".image-container")
+          .querySelector(".dropdown");
+
+        document.querySelectorAll(".dropdown").forEach((d) => {
+          if (d !== dropdown) d.style.display = "none";
+        });
+
+        dropdown.style.display =
+          dropdown.style.display === "block" ? "none" : "block";
+      }
+
+      function finalizeDirection(event) {
+        let changed_direction = {};
+        event.stopPropagation();
+        let dropdown = event.target.closest(".dropdown");
+
+        let selects = dropdown.querySelectorAll("select");
+
+        selects.forEach((select) => {
+          let roomName = select.previousElementSibling.textContent
+            .replace(":", "")
+            .trim();
+          changed_direction[roomName.toLowerCase().replace(/\s+/g, "_")] =
+            select.value;
+        });
+
+        console.log(changed_direction); // Debugging output
+
+        dropdown.style.display = "none";
+        fetch("/edit_sa", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(changed_direction),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("Response from server" + data);
+            if (data.success) {
+              let rectifiedImg = document.querySelector(
+                "img[alt='Rectified Layout']"
+              );
+              if (rectifiedImg) {
+                rectifiedImg.src =
+                  "../static/images/rectified_image_filtered.png?t=" +
+                  Date.now();
+                console.log("Updated image src:", rectifiedImg.src);
+              } else {
+                console.error("Rectified image not found in the DOM.");
+              }
+            } else {
+              alert("Error processing in simulated Annealing" + data.error);
+            }
+          })
+          .catch((error) => console.error("Fetch error", error));
+      }
+
+      document.addEventListener("click", function () {
+        document
+          .querySelectorAll(".dropdown")
+          .forEach((dropdown) => (dropdown.style.display = "none"));
+      });
+    </script>
+  </body>
+</html>

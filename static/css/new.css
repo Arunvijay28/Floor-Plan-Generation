@@ -1,0 +1,131 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
+    background-color: #121212;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+/* Outer Container */
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 900px;
+    background: #1e1e1e;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+/* Chat Section */
+.chat-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+}
+
+/* Chat Box */
+#chat-box {
+    border: 1px solid #333;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+/* Input Section */
+.chat-input {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+/* Input Field */
+#userInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+/* Buttons */
+#sendMessage,
+#finalize {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#sendMessage:hover,
+#finalize:hover {
+    background-color: #0056b3;
+}
+
+/* Vertical Divider */
+.divider {
+    width: 2px;
+    background-color: #444;
+    margin: 0 20px;
+}
+
+/* Image Section */
+.image-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Image Title */
+.image-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+/* Uploaded Image */
+.uploaded-image {
+    width: 100%;
+    max-width: 250px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+}
+
+/* Chatbox - More Width */
+.chatbox {
+    flex: 3;
+    padding: 10px;
+    border-right: 2px solid #444;
+}
+
+/* Prevent Unwanted Scrolling */
+body {
+    overflow-x: hidden;
+}
+
+/* Upload Button */
+.upload-btn {
+    cursor: pointer;
+    font-size: 18px;
+    color: #007bff;
+}
+
+.upload-btn:hover {
+    color: #0056b3;
+}

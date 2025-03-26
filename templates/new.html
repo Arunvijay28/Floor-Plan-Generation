@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floorplan Assistant</title>
+    <link rel="stylesheet" href="..\static\css\new.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Chat Section -->
+      <div class="chat-section">
+        <h1>Floorplan Assistant</h1>
+        <div id="chat-box"></div>
+
+        <!-- Input Section -->
+        <div class="chat-input">
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Type your message here"
+          />
+          <label for="fileInput" class="upload-btn">
+            <i class="fa fa-paperclip" aria-hidden="true"></i>
+          </label>
+          <input
+            type="file"
+            id="fileInput"
+            accept="image/*"
+            style="display: none"
+            onchange="handleFileSelect()"
+          />
+          <button id="sendMessage">Send</button>
+          <button id="finalize" onclick="finalizeFloorplan()">Finalize</button>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider"></div>
+      <div class="image-section" id="imageSection" style="display: none">
+        <div class="image-title">Uploaded Boundary</div>
+        <img
+          id="uploadedImage"
+          src="../static/uploads/uploaded_image.png"
+          class="uploaded-image"
+        />
+      </div>
+    </div>
+
+    <script src="..\static\js\chatbot.js"></script>
+    <script>
+      function finalizeFloorplan() {
+        fetch("/finalize", { method: "GET" })
+          .then((response) => {
+            if (response.redirected) {
+              window.location.href = response.url;
+            } else {
+              console.log(response);
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function handleFileSelect() {
+        const imageSection = document.getElementById("imageSection");
+        const uploadedImage = document.getElementById("uploadedImage");
+        const fileInput = document.getElementById("fileInput");
+        const file = fileInput.files[0];
+        if (file) {
+          const formData = new FormData();
+          formData.append("image", file);
+
+          fetch("/upload", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+                uploadedImage.src = "../static/uploads/uploaded_image.png?t=" + Date.now();
+                imageSection.style.display = "block"; 
+                console.log("Updated boundary image:", uploadedImage.src);
+            })
+            .catch((error) => {
+              console.error("Error uploading image:", error);
+            })
+          // Check if the image exists
+          // fetch(uploadedImage.src)
+          //   .then((response) => {
+          //     if (response.ok) {
+          //       imageSection.style.display = "block"; // Show image section if image exists
+          //     }
+          //   })
+            .catch((error) => {
+              console.log("No uploaded image found.");
+            });
+        }
+      }
+    </script>
+  </body>
+</html>
