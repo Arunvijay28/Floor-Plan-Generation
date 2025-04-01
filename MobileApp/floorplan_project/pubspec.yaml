@@ -7,12 +7,15 @@ environment:
   sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
+  file_picker: ^10.0.0
   flutter:
     sdk: flutter
   flutter_bloc:
   graphview: ^1.2.0
+  html: ^0.15.5
   http: ^1.3.0
   smooth_page_indicator: ^1.2.1
+  path_provider: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -30,4 +33,7 @@ flutter:
   uses-material-design: true
   assets:
   - assets/images/fp_final_0.png
+  - assets/images/rectified_image_filtered.png
+
+
 
