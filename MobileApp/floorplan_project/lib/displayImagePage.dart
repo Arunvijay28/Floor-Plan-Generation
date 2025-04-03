@@ -20,6 +20,7 @@ class _DisplayimagepageState extends State<Displayimagepage> {
   final PageController _pageController = PageController();
 
   late List<dynamic> retrievedData;
+  Uint8List? updatedImageBytes;
   Map<String, String> roomDirections = {
     'Living Room': 'NE',
     'Bathroom': 'NE',
@@ -29,7 +30,8 @@ class _DisplayimagepageState extends State<Displayimagepage> {
     'Balcony': 'NE',
   };
 
-  String imageKey = DateTime.now().millisecondsSinceEpoch.toString();
+  // String imageKey = DateTime.now().millisecondsSinceEpoch.toString();
+  String imagePath = 'assets/images/rectified_image_filtered.png';
 
   // Full names for display
   final Map<String, String> directionFullNames = {
@@ -92,11 +94,9 @@ class _DisplayimagepageState extends State<Displayimagepage> {
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                Image.asset(
-                  'assets/images/rectified_image_filtered.png',
-                  key: ValueKey(imageKey),
-                  fit: BoxFit.cover,
-                ),
+                updatedImageBytes != null
+                    ? Image.memory(updatedImageBytes!, fit: BoxFit.cover)
+                    : Image.asset(imagePath, fit: BoxFit.cover),
                 Positioned(
                   bottom: -5,
                   child: IconButton(
@@ -266,58 +266,6 @@ class _DisplayimagepageState extends State<Displayimagepage> {
     );
   }
 
-//   Future<void> _sendDirectionToServer() async {
-//     // The data you want to send to the server
-//     Map<String, dynamic> updatedDirections = {
-//       'living_room': roomDirections['Living Room'],
-//       'bathroom': roomDirections['Bathroom'],
-//       'master_room': roomDirections['Master Room'],
-//       'kitchen': roomDirections['Kitchen'],
-//       'common_room': roomDirections['Common Room'],
-//       'balcony': roomDirections['Balcony'],
-//     };
-
-//     try {
-//       final response = await http.post(
-//         Uri.parse(
-//             'http://127.0.0.1:5000/edit_sa'), // Replace with your server URL
-//         headers: {'Content-Type': 'application/json'},
-//         body: json.encode(updatedDirections), // Convert Map to JSON
-//       );
-
-//       if (response.statusCode == 200) {
-//         final responseBody = json.decode(response.body);
-//         if (responseBody['success']) {
-//           print("Successfully updated directions");
-//           // You can show a success message or proceed further here
-//         } else {
-//           print("Failed to update directions");
-//         }
-//       } else {
-//         print("Error: ${response.statusCode}");
-//       }
-//     } catch (e) {
-//       print("Error sending directions to server: $e");
-//     }
-
-//     Uri uri = Uri.parse("http://127.0.0.1:5000/reload");
-//     try {
-//       http.Response response = await http.get(uri);
-//       if (response.statusCode == 200) {
-//          setState(() {
-//             // Reload the image after the server updates it
-//             imageKey = DateTime.now().millisecondsSinceEpoch.toString();
-//           });
-//         print(jsonDecode(response.body)["reply"]);
-//       } else {
-//         print("Error: server returned ${response.statusCode}");
-//       }
-//     } catch (e) {
-//       print("Error sending directions to server: $e");
-//     }
-//   }
-// }
-
   Future<void> _sendDirectionToServer() async {
     // The data you want to send to the server
     Map<String, dynamic> updatedDirections = {
@@ -341,7 +289,6 @@ class _DisplayimagepageState extends State<Displayimagepage> {
         final responseBody = json.decode(response.body);
         if (responseBody['success']) {
           print("Successfully updated directions");
-          // Trigger image reload after directions are updated
           _reloadImageFromServer();
         } else {
           print("Failed to update directions");
@@ -360,17 +307,27 @@ class _DisplayimagepageState extends State<Displayimagepage> {
       http.Response response = await http.get(uri);
       if (response.statusCode == 200) {
         print(jsonDecode(response.body)["reply"]);
+        _fetchUpdatedImage();
         // Reload the image after server finishes copying the image to the folder
-        setState(() {
-          imageKey = DateTime.now()
-              .millisecondsSinceEpoch
-              .toString(); // Trigger image reload
-        });
       } else {
         print("Error: server returned ${response.statusCode}");
       }
     } catch (e) {
       print("Error sending directions to server: $e");
+    }
+  }
+
+  Future<void> _fetchUpdatedImage() async {
+    try {
+      http.Response response = await http.get(Uri.parse(
+          "http://127.0.0.1:5000/static/images/rectified_image_filtered.png"));
+      if (response.statusCode == 200) {
+        setState(() {
+          updatedImageBytes = response.bodyBytes; // Load image as bytes
+        });
+      }
+    } catch (e) {
+      print("Error fetching updated image: $e");
     }
   }
 }
