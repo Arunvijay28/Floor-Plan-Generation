@@ -71,11 +71,13 @@ pip list
 ```
 
 ## Running the Project
-You can start your Flask application (if applicable) using:
+You can start your Flask application using:
 ```sh
 python app.py
 ```
-Replace `app.py` with the entry script of your project.
+
+## Drive Link to download FAISS index file
+https://drive.google.com/drive/folders/1dbsNrAAAZaveUOp69x-538sSD5sHUC9U?usp=sharing
 
 ## Contribution
 Feel free to submit issues and pull requests to improve this project!
