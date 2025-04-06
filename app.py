@@ -16,7 +16,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 session=[]
 room_list=[]
 # Configure Google Generative AI
-genai.configure(api_key="AIzaSyBkaKFbVLAXe04hExoeyDX97jNgN8twiao")
+genai.configure(api_key="Replace with your Gemini API key")
 # print(genai.ListModels())
 model = genai.GenerativeModel("gemini-2.0-flash-lite")
 chat = model.start_chat(history=[])
