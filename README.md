@@ -71,6 +71,12 @@ pip list
 ```
 
 ## Running the Project
+
+In app.py replace with your gemini api key:
+```sh
+python app.p
+```
+
 You can start your Flask application using:
 ```sh
 python app.py
