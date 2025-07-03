@@ -74,7 +74,7 @@ pip list
 
 In app.py replace with your gemini api key:
 ```sh
-python app.p
+genai.configure(api_key="Replace with your Gemini API key")
 ```
 
 You can start your Flask application using:
